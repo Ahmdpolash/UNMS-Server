@@ -1,26 +1,30 @@
+import { Model, Types } from 'mongoose';
 
-export type UserName = {
+export type TUserName = {
   firstName: string;
   middleName: string;
   lastName: string;
 };
 
-export type Guardians = {
+export type TGuardians = {
   fatherName: string;
   motherName: string;
   contactNumber: string;
 };
 
-export type LocalGuardian = {
+export type TLocalGuardian = {
   name: string;
   occupation: string;
   contactNumber: string;
   address: string;
 };
 
-export type Student = {
+export type TStudent = {
   id: string;
-  name: UserName;
+  user: Types.ObjectId;
+  password: string;
+
+  name: TUserName;
   gender: 'male' | 'female';
   dateOfBirth: string;
   contactNumber: string;
@@ -29,8 +33,21 @@ export type Student = {
   bloodStatus?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress?: string;
   permenentAddress?: string;
-  guardians: Guardians;
-  localGuardians?: Guardians;
+  guardians: TGuardians;
+  localGuardians?: TLocalGuardian;
   profileImage?: string;
-  isActive?: 'active' | 'inactive';
+  isActive: 'active' | 'blocked';
 };
+
+//for creating statics
+export interface StudentModel extends Model<TStudent> {
+  isUserExists(id: string): Promise<TStudent | null>;
+}
+
+//for creating instance
+
+// export type StudentMethod = {
+//   isUserExist(id: string): Promise<TStudent | null>;
+// };
+
+// export type StudentModel = Model<TStudent, {}, StudentMethod>;
