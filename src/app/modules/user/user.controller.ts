@@ -10,7 +10,7 @@ import sentResponse from '../../utils/sentResponse';
 //       const result = await userService.CreateStudentIntoDb(student);
 
 //   } catch (error) {
-//     console.log(error);
+//     
 //   }
 // };
 
