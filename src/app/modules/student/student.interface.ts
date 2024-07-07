@@ -6,7 +6,7 @@ export type TUserName = {
   lastName: string;
 };
 
-export type TGuardians = {
+export type TGuardian = {
   fatherName: string;
   motherName: string;
   contactNumber: string;
@@ -33,8 +33,8 @@ export type TStudent = {
   bloodStatus?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress?: string;
   permenentAddress?: string;
-  guardians: TGuardians;
-  localGuardians?: TLocalGuardian;
+  guardian: TGuardian;
+  localGuardian?: TLocalGuardian;
   profileImage?: string;
   isActive: 'active' | 'blocked';
 };
