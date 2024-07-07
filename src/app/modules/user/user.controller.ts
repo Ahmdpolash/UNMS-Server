@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { userService } from './user.services';
 import httpStatus from 'http-status';
 import sentResponse from '../../utils/sentResponse';
@@ -14,11 +14,7 @@ import sentResponse from '../../utils/sentResponse';
 //   }
 // };
 
-const createStudent = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const createStudent: RequestHandler = async (req, res, next) => {
   try {
     const { password, student } = req.body;
     const result = await userService.CreateStudentIntoDb(password, student);
