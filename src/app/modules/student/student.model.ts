@@ -2,11 +2,11 @@ import { Schema, model } from 'mongoose';
 import validator from 'validator';
 
 import {
-  TGuardians,
   TLocalGuardian,
   TStudent,
   StudentModel,
   TUserName,
+  TGuardian,
 } from './student.interface';
 
 // User Name Schema
@@ -40,7 +40,7 @@ const userNameSchema = new Schema<TUserName>({
 });
 
 // Guardian Schema
-const guardianSchema = new Schema<TGuardians>({
+const guardianSchema = new Schema<TGuardian>({
   fatherName: {
     type: String,
     required: [true, "Father's name is required"],
@@ -107,10 +107,7 @@ const studentSchema = new Schema<TStudent, StudentModel>({
     type: String,
     required: [true, 'Contact number is required'],
   },
-  emerGencyContactNumber: {
-    type: String,
-    required: [true, 'Emergency contact number is required'],
-  },
+
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -119,6 +116,10 @@ const studentSchema = new Schema<TStudent, StudentModel>({
     //   validator: (value: string) => validator.isEmail(value),
     //   message: '{VALUE} is not a valid',
     // },
+  },
+  emerGencyContactNumber: {
+    type: String,
+    required: [true, 'Emergency contact number is required'],
   },
   bloodStatus: {
     type: String,
@@ -135,11 +136,11 @@ const studentSchema = new Schema<TStudent, StudentModel>({
     type: String,
     required: [true, 'Permanent address is required'],
   },
-  guardians: {
+  guardian: {
     type: guardianSchema,
     required: [true, 'Guardians information is required'],
   },
-  localGuardians: {
+  localGuardian: {
     type: localGuardiansSchema,
     required: [true, 'Local guardians information is required'],
   },
